@@ -1,0 +1,86 @@
+Create a database name: SqlExam4
+
+1. Create tables as following:
+Customer (Store Customers information):
+cID (int, Primary Key)	cName (varchar(25))	cAge (tinyint)
+1	Tuan Anh	19
+2	Viet Hung	22
+3	Hoang Minh	40
+4	Ngoc Hai	14
+
+2. Product (Store Products information)
+
+pID (int, Primary Key)	pName (varchar(25))	pPrice (int)
+1	Ban La	1000
+2	Quat Chay	500
+3	May Bom Hong	20
+4	Tivi	5000
+5	Tu Lanh	7000
+
+3.Order
+
+oID (int, Primary Key)	cID (int, Foreign Key References Customer.cID)	oDate (DateTime)	oTotalPrice (int)
+1	1	09/15/2007	NULL
+2	3	09/20/2007	NULL
+3	1	09/23/2007	NULL
+OrderDetail
+
+4. oID (int, Foreign Key References Order.oID)	pID (int, Foreign Key References Product.pID)	odQTY (int, Order quantity)
+1	1	3
+1	3	5
+1	4	2
+2	5	1
+2	5	4
+2	3	5
+3	1	12
+
+5. 
+Display Order as following (Result must be ordered by Date):
+oID	cID	cDate	oTotalPrice
+3	1	2007-09-23 00:00:00.000	NULL
+2	3	2007-09-20 00:00:00.000	NULL
+1	1	2007-09-15 00:00:00.000	NULL
+
+6. Display the most expensive product:
+pName	pPrice
+Tu Lanh	7000
+
+7. Show customer name with each item he bought like:
+cName	pName
+Hoang Minh	Tu Lanh
+Hoang Minh	Tu Lanh
+Hoang Minh	May Bom Hong
+Tuan Anh	Ban La
+Tuan Anh	May Bom Hong
+Tuan Anh	Tivi
+Tuan Anh	Ban La
+
+8.Show customers that didn’t buy any thing:
+cName
+Viet Hung
+Ngoc Hai
+
+9.Display sold items as following:
+oID	oDate	odQTY	pName	pPrice
+1	2007-09-15 00:00:00.000	3	Ba La	1000
+1	2007-09-15 00:00:00.000	5	May Bom Hong	20
+1	2007-09-15 00:00:00.000	2	Tivi	5000
+2	2007-09-20 00:00:00.000	1	Tu Lanh	7000
+2	2007-09-20 00:00:00.000	4	Tu Lanh	7000
+2	2007-09-20 00:00:00.000	5	May Bom Hong	20
+3	2007-09-23 00:00:00.000	12	Ba La	1000
+
+10.Show total cost in each Order:
+oID	oDate	Total
+1	2007-09-15 00:00:00.000	13100
+2	2007-09-20 00:00:00.000	35100
+3	2007-09-23 00:00:00.000	12000
+
+11.Create view name Sales show total cost of all Orders:
+60200
+
+12.Remove all constraints in all tables
+
+13.Create a trigger name: casUpdate on Customer table. This trigger will update cID in Order table when cID in Customer table changed
+
+14.Create a Store procedure name delCustomer with a parameter @name (Customer name). When input a customer name, this procedure will delete all the customer infomation in Customer table, Order table, OrdeDetail table.
